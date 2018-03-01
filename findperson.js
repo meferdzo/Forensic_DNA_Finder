@@ -92,3 +92,5 @@ function findSuspect() {
   console.log(`DNA belongs to ${currentName}`);
   document.getElementById("result").innerHTML= `DNA belongs to ${currentName}`;
 }
+
+console.log("test");
