@@ -1,9 +1,11 @@
 console.log("I'm connected");
+document.getElementById("findbtn").addEventListener("click", findSuspect);
 
 let dnaSequence = "HHHKLJ140L98IHYYYN";
 let suspect = "";
 let suspectname = "";
 let suspectstring = "";
+let currentName = "";
 
 let suspects = {
   "John Novak": {
@@ -62,30 +64,31 @@ let legend = {
   }
 };
 
-for (let key in legend) {
-  for (let key2 in legend[key]) {
-    if (dnaSequence.indexOf(legend[key][key2]) !== -1) {
-      //console.log( `Sequence ${dnaSequence} is in ${legend[key][key2]}.` );
-      //console.log(key, key2, legend)
-      suspect = `${suspect} ${key2}`;
+
+function findSuspect() {
+  for (let key in legend) {
+    for (let key2 in legend[key]) {
+      if (dnaSequence.indexOf(legend[key][key2]) !== -1) {
+        //console.log( `Sequence ${dnaSequence} is in ${legend[key][key2]}.` );
+        //console.log(key, key2, legend)
+        suspect = `${suspect} ${key2}`;
+      }
     }
   }
-}
 
-let currentName = "";
+  for (let n in suspectstest) {
+    for (let nval in suspectstest[n]) {
+      suspectstring = `${suspectstring} ${n, nval, suspectstest[n][nval]}`;
 
-for (let n in suspectstest) {
-  for (let nval in suspectstest[n]) {
-    suspectstring = `${suspectstring} ${n, nval, suspectstest[n][nval]}`;
+      //console.log(`****${suspect}****`);
+      //console.log(`++++${suspectstring}++++`);
 
-    //console.log(`****${suspect}****`);
-    //console.log(`++++${suspectstring}++++`);
-
-    if (suspectstring == suspect) {
-      currentName = n + currentName;
-      //console.log(currentName);
+      if (suspectstring == suspect) {
+        currentName = n + currentName;
+        //console.log(currentName);
+      }
     }
   }
+  console.log(`DNA belongs to ${currentName}`);
+  document.getElementById("result").innerHTML= `DNA belongs to ${currentName}`;
 }
-
-console.log(`DNA belongs to ${currentName}`);
